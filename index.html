@@ -117,7 +117,7 @@
       box-shadow: 0 4px 12px rgba(45,142,45,0.2);
     }
     .menu-icon{
-      width:36px;height:36px;display:flex;flex-direction:column;justify-content:center;
+      width:36px;height:36px;display:none;flex-direction:column;justify-content:center;
       align-items:center;cursor:pointer;gap:5px;padding: 8px;
       border-radius: 6px;
       transition: all 0.3s ease;
@@ -131,6 +131,15 @@
     }
     .menu-icon:hover span{
       background: #2d8e2d;
+    }
+    .menu-icon.active span:nth-child(1){
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .menu-icon.active span:nth-child(2){
+      opacity: 0;
+    }
+    .menu-icon.active span:nth-child(3){
+      transform: rotate(-45deg) translate(7px, -6px);
     }
 
     /* Dropdown Menu - Enhanced */
@@ -162,20 +171,6 @@
     .dropdown-toggle:hover::before{
       width: 80%;
     }
-    @media (max-width: 768px) {
-  .dropdown-menu {
-    position: static;
-    box-shadow: none;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-  }
-
-  .dropdown-menu.active {
-    max-height: 500px;
-  }
-}
-
     .dropdown-toggle::after{
       content:'▼';font-size:9px;margin-left:4px;transition:transform .3s ease;color:#1e6b1e;
     }
@@ -190,8 +185,7 @@
     .dropdown-menu::-webkit-scrollbar{width: 6px;}
     .dropdown-menu::-webkit-scrollbar-track{background: #f1f1f1;border-radius: 10px;}
     .dropdown-menu::-webkit-scrollbar-thumb{background: #2d8e2d;border-radius: 10px;}
-    .dropdown-menu.active{opacity:1;visibility:visible;transform:translateY(0) scale(1);
-    }
+    .dropdown-menu.active{opacity:1;visibility:visible;transform:translateY(0) scale(1);}
     .dropdown-menu a{
       display:block;padding:12px 24px;color:#333;font-size:13px;text-decoration:none;
       transition:all .3s ease;white-space:nowrap;position: relative;
@@ -219,11 +213,13 @@
     .dropdown-menu a:first-child{border-radius:10px 10px 0 0}
     .dropdown-menu a:last-child{border-radius:0 0 10px 10px}
 
-    /* HERO – Enhanced with modern gradients */
+    /* HERO – Enhanced with fixed student image */
     .hero{
       position:relative;
-      height:calc(100vh - 120px); min-height:700px;
-      display:flex;align-items:center;
+      height:calc(100vh - 120px); 
+      min-height:700px;
+      display:flex;
+      align-items:center;
       overflow:hidden;
       background-image:
         linear-gradient(135deg,
@@ -262,48 +258,50 @@
       opacity:.15;
       z-index:1;
     }
-    @media (max-width: 768px) {
-  .hero-content, .hero-images {
-    width: 100%;
-    text-align: center;
-  }
-
-  .sejarah-grid, .card-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-container {
-    flex-direction: column;
-    text-align: center;
-  }
-}
 
     .hero-content{
-      position:relative; z-index:5;
-      max-width:650px; color:#fff;
+      position:relative; 
+      z-index:5;
+      max-width:650px; 
+      color:#fff;
       margin-left:60px;
       text-shadow:3px 3px 15px rgba(0,0,0,.4);
       font-family:'Times New Roman', Times, serif;
       animation: fadeInUp 1s ease-out;
     }
     .hero-content h2{
-      font-size:2.4em; line-height:1.5; font-weight:700;
+      font-size:2.4em; 
+      line-height:1.5; 
+      font-weight:700;
       margin-bottom:20px;
       font-family:'Times New Roman', Times, serif;
       animation: slideInLeft 0.8s ease-out 0.2s both;
       letter-spacing: 0.5px;
     }
 
+    /* Fixed student images - tidak mengambang lagi */
     .hero-images{
-      position:absolute; right:5%; bottom:0; z-index:10;
-      width:50%; max-width:800px; min-width:500px; pointer-events:none;
+      position:absolute; 
+      right:5%; 
+      bottom:0; 
+      z-index:10;
+      width:50%; 
+      max-width:800px; 
+      min-width:500px;
       animation: fadeInRight 1s ease-out 0.4s both;
     }
-    .student-group{width:100%; display:flex; justify-content:flex-end; align-items:flex-end}
+    .student-group{
+      width:100%; 
+      display:flex; 
+      justify-content:flex-end; 
+      align-items:flex-end;
+    }
     .student-group-img{
-      width:100%; height:auto; object-fit:contain;
+      width:100%; 
+      height:auto; 
+      object-fit:contain;
       filter:drop-shadow(8px 12px 25px rgba(0,0,0,.45));
-      animation: float 6s ease-in-out infinite;
+      /* REMOVED FLOAT ANIMATION - gambar tidak mengambang lagi */
     }
 
     /* Animations */
@@ -335,59 +333,168 @@
       0%, 100%{transform: scale(1);}
       50%{transform: scale(1.1);}
     }
-    @keyframes float{
-      0%, 100%{transform: translateY(0px);}
-      50%{transform: translateY(-20px);}
-    }
     @keyframes gradientShift{
       0%, 100%{opacity: 0.8;}
       50%{opacity: 1;}
     }
 
-    /* Responsive */
-    @media (max-width:1400px){
-      .hero-images{width:48%; min-width:450px; right:3%}
-      .hero-content h2{font-size:2.1em}
-    }
-    @media (max-width:1200px){
-      .hero-content h2{font-size:1.9em}
-      .hero-images{width:45%; min-width:400px; right:2%}
-      .hero-content{margin-left:40px}
-    }
+    /* Responsive - IMPROVED MOBILE NAVIGATION */
     @media (max-width:992px){
-      header{padding:12px 30px}
-      nav{gap:20px}
+      header{
+        padding:12px 30px;
+      }
+      
+      /* Show hamburger menu icon on mobile */
+      .menu-icon{
+        display: flex;
+      }
+      
+      /* Hide desktop navigation */
+      nav{
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 300px;
+        height: 100vh;
+        background: linear-gradient(180deg, #ffffff 0%, #f5f9f5 100%);
+        flex-direction: column;
+        padding: 80px 30px 30px;
+        gap: 0;
+        box-shadow: -5px 0 25px rgba(0,0,0,0.15);
+        transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        z-index: 999;
+        overflow-y: auto;
+      }
+      
+      nav.active{
+        right: 0;
+      }
+      
+      /* Navigation items styling for mobile */
+      nav a{
+        width: 100%;
+        padding: 15px 20px;
+        font-size: 15px;
+        border-bottom: 1px solid rgba(45,142,45,0.1);
+        border-radius: 8px;
+        margin-bottom: 5px;
+      }
+      
+      nav a:hover{
+        background: rgba(45,142,45,0.1);
+      }
+      
+      /* Dropdown in mobile */
+      .dropdown{
+        width: 100%;
+      }
+      
+      .dropdown-toggle{
+        width: 100%;
+        padding: 15px 20px;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(45,142,45,0.1);
+        border-radius: 8px;
+        margin-bottom: 5px;
+      }
+      
+      .dropdown-menu{
+        position: static;
+        box-shadow: none;
+        border: none;
+        background: rgba(45,142,45,0.05);
+        border-radius: 8px;
+        margin: 5px 0 10px 0;
+        padding: 5px 0;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+      }
+      
+      .dropdown-menu.active{
+        max-height: 500px;
+        padding: 10px 0;
+      }
+      
+      .dropdown-menu a{
+        border: none;
+        padding: 12px 20px 12px 35px;
+        font-size: 14px;
+      }
+      
+      /* Search icon positioning in mobile menu */
+      .search-icon{
+        margin-top: 10px;
+        width: 100%;
+        justify-content: center;
+        background: rgba(45,142,45,0.1);
+        padding: 15px;
+        border-radius: 8px;
+      }
+      
+      /* Overlay when menu is open */
+      nav.active::before{
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.5);
+        z-index: -1;
+      }
+      
       .hero{
         min-height:600px;
         flex-direction:column;
         justify-content:center;
-        background-image:
-          linear-gradient(to bottom,
-            #1e6b1e 0%,
-            #2d8e2d 20%,
-            #4caf50 40%,
-            #81c784 60%,
-            #c8e6c9 100%);
       }
       .hero-content{
-        margin:0 auto; text-align:center; padding:30px 20px; max-width:90%;
-        position:relative; z-index:5;
-      }
-      .hero-content h2{font-size:1.8em; margin-bottom:30px}
-      .hero-images{
-        position:relative; width:85%; max-width:500px; right:auto; margin:20px auto 0;
+        margin:0 auto; 
+        text-align:center; 
+        padding:30px 20px; 
+        max-width:90%;
+        position:relative; 
         z-index:5;
       }
+      .hero-content h2{
+        font-size:1.8em; 
+        margin-bottom:30px;
+      }
+      .hero-images{
+        position:relative; 
+        width:85%; 
+        max-width:500px; 
+        right:auto; 
+        margin:20px auto 0;
+        z-index:5;
+        min-width: auto;
+      }
       .school-info h1{font-size:15px}
-      nav a{font-size:13px}
     }
+    
     @media (max-width:576px){
       header{padding:10px 20px}
       .logo{width:60px;height:60px}
       .school-info h1{font-size:13px}
       .school-info p{font-size:11px}
-      nav{gap:15px}
-      nav a{font-size:12px}
+      
+      nav{
+        width: 280px;
+        padding: 70px 20px 20px;
+      }
+      
+      nav a{
+        padding: 12px 15px;
+        font-size: 14px;
+      }
+      
+      .dropdown-toggle{
+        padding: 12px 15px;
+      }
+      
       .hero-content h2{font-size:1.5em}
       .hero-images{width:95%; min-width:300px}
       .search-icon{width:28px;height:28px;font-size:16px}
@@ -764,6 +871,15 @@
       }
     }
 
+    @keyframes fadeInOut {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.7;
+      }
+    }
+
     @media (max-width: 768px) {
       .loading-logo {
         width: 170px;
@@ -802,84 +918,81 @@
     }
 
     .education-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 20px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding: 20px 0;
-  }
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 20px 0;
+    }
 
-  .education-card {
-    background: linear-gradient(135deg, #ffffff 0%, #f9fffe 100%);
-    padding: 20px;
-    border-radius: 16px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+    .education-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f9fffe 100%);
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-  .education-card img {
-    width: 100%;
-    height: 150px;
-    object-fit: contain;
-    border-radius: 8px;
-    margin-bottom: 16px;
-  }
+    .education-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
 
-  .education-card h3 {
-    font-size: 18px;
-    color: #2d8e2d;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
+    .education-card h3 {
+      font-size: 18px;
+      color: #2d8e2d;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
 
-  .education-card p {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 18px;
-  }
+    .education-card p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 18px;
+    }
 
-  .education-card a {
-    text-decoration: none;
-    color: #2d8e2d;
-    font-weight: 600;
-    font-size: 14px;
-    transition: color 0.3s ease;
-  }
+    .education-card a {
+      text-decoration: none;
+      color: #2d8e2d;
+      font-weight: 600;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
 
-  .education-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
-  }
+    .education-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+    }
 
-  .education-card:hover a {
-    color: #1e6b1e;
-  }
+    .education-card:hover a {
+      color: #1e6b1e;
+    }
 
- /* Responsiveness */
-@media (max-width: 1200px) {
-  .education-grid {
-    grid-template-columns: repeat(3, 1fr);  /* Menjadi 3 card di atas untuk layar lebih kecil */
-  }
-}
+    /* Responsiveness */
+    @media (max-width: 1200px) {
+      .education-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
 
-@media (max-width: 768px) {
-  .education-grid {
-    grid-template-columns: repeat(2, 1fr);  /* 2 card di atas */
-  }
-}
+    @media (max-width: 768px) {
+      .education-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
 
-@media (max-width: 576px) {
-  .education-grid {
-    grid-template-columns: 1fr;  /* 1 card dalam satu kolom */
-  }
-}
+    @media (max-width: 576px) {
+      .education-grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
     /* ============ BERITA KEGIATAN - Enhanced ============ */
     .search-container {
@@ -996,6 +1109,10 @@
       content: '→';
       margin-left: 6px;
       transition: margin-left 0.3s ease;
+    }
+
+    .card-content .read-more::before{
+      display: none;
     }
 
     .card-content .read-more:hover{
@@ -1156,71 +1273,6 @@
       .footer-info p{font-size:13.5px}
       .footer-contact-item{font-size:13.5px}
     }
-    /* ============ General Mobile Adjustments ============ */
-.hero-content h2 {
-  font-size: 2.4em;
-  line-height: 1.5;
-  font-weight: 700;
-}
-
-@media (max-width: 992px) {
-  .hero-content h2 {
-    font-size: 1.9em; /* Slightly smaller font size on tablets */
-  }
-}
-
-@media (max-width: 576px) {
-  .hero-content h2 {
-    font-size: 1.5em; /* Adjust for very small screens like mobile phones */
-  }
-  .hero-images {
-    width: 95%;
-    min-width: 300px;
-  }
-}
-
-.top-bar {
-  padding: 10px 30px;  /* Adjust padding for smaller screens */
-}
-
-@media (max-width: 576px) {
-  .top-bar {
-    padding: 10px 20px; /* Reduce padding for mobile devices */
-  }
-}
-
-/* Adjust Navbar Links on Mobile */
-nav a {
-  font-size: 12px; /* Reduce font size on smaller screens */
-  padding: 8px 12px;
-}
-
-@media (max-width: 768px) {
-  nav {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: #fff;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  }
-  
-  nav.active {
-    display: flex;
-  }
-
-  .menu-icon {
-    display: block;
-    cursor: pointer;
-  }
-}
-
-.menu-icon {
-  display: none;
-}
-    
   </style>
 </head>
 <body>
@@ -1257,7 +1309,7 @@ nav a {
         <p>Khidmah - Istiqamah - Barakah</p>
       </div>
     </div>
-    <nav>
+    <nav id="mainNav">
       <a href="#beranda">BERANDA</a>
       <div class="dropdown">
         <a href="#" class="dropdown-toggle" id="pendidikanDropdown">PENDIDIKAN</a>
@@ -1275,12 +1327,12 @@ nav a {
       <a href="#fasilitas">FASILITAS</a>
       <a href="#program">PROGRAM</a>
       <div class="search-icon" title="Pencarian">🔍</div>
-      <div class="menu-icon">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
     </nav>
+    <div class="menu-icon" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </header>
 
   <!-- HERO -->
@@ -1352,76 +1404,76 @@ nav a {
   </section>
 
   <!-- ========== JENJANG PENDIDIKAN ========== -->
-<section id="jenjang-pendidikan">
-  <div class="container">
-    <div class="section-title">JENJANG PENDIDIKAN</div>
+  <section id="jenjang-pendidikan">
+    <div class="container">
+      <div class="section-title">JENJANG PENDIDIKAN</div>
 
-    <div class="education-grid">
-      <div class="education-card">
-        <img src=" LOGO RA.png" alt="RA Bunga Bangsa">
-        <div>
-          <h3>RA BUNGA BANGSA</h3>
-          <p>Setara TK/PAUD, dikenalkan dengan pembiasaan adab Islami, pengajaran Al-Qur'an & Hadits, serta kegiatan bermain-belajar.</p>
-          <a href="#">Selengkapnya</a>
+      <div class="education-grid">
+        <div class="education-card">
+          <img src=" LOGO RA.png" alt="RA Bunga Bangsa">
+          <div>
+            <h3>RA BUNGA BANGSA</h3>
+            <p>Setara TK/PAUD, dikenalkan dengan pembiasaan adab Islami, pengajaran Al-Qur'an & Hadits, serta kegiatan bermain-belajar.</p>
+            <a href="#">Selengkapnya</a>
+          </div>
         </div>
-      </div>
 
-      <div class="education-card">
-        <img src=" LOGO YAYASAN.png" alt="MTs Nurul Huda">
-        <div>
-          <h3>MTs NURUL HUDA</h3>
-          <p>Jenjang sekolah menengah pertama berbasis madrasah/pesantren, memperkuat pondasi keilmuan dan keagamaan sambil...</p>
-          <a href="#">Selengkapnya</a>
+        <div class="education-card">
+          <img src=" LOGO YAYASAN.png" alt="MTs Nurul Huda">
+          <div>
+            <h3>MTs NURUL HUDA</h3>
+            <p>Jenjang sekolah menengah pertama berbasis madrasah/pesantren, memperkuat pondasi keilmuan dan keagamaan sambil...</p>
+            <a href="#">Selengkapnya</a>
+          </div>
         </div>
-      </div>
 
-      <div class="education-card">
-        <img src=" LOGO YAYASAN.png" alt="MI Nurul Huda">
-        <div>
-          <h3>MI NURUL HUDA</h3>
-          <p>Sekolah dasar berbasis madrasah yang mengintegrasikan kurikulum nasional dengan pendidikan ilmu agama...</p>
-          <a href="#">Selengkapnya</a>
+        <div class="education-card">
+          <img src=" LOGO YAYASAN.png" alt="MI Nurul Huda">
+          <div>
+            <h3>MI NURUL HUDA</h3>
+            <p>Sekolah dasar berbasis madrasah yang mengintegrasikan kurikulum nasional dengan pendidikan ilmu agama...</p>
+            <a href="#">Selengkapnya</a>
+          </div>
         </div>
-      </div>
 
-      <div class="education-card">
-        <img src=" LOGO YAYASAN.png" alt="MA Nurul Huda">
-        <div>
-          <h3>MA NURUL HUDA</h3>
-          <p>Jenjang sekolah menengah atas di lingkungan pesantren, memadukan kurikulum sistem pendidikan formal dengan pendidikan...</p>
-          <a href="#">Selengkapnya</a>
+        <div class="education-card">
+          <img src=" LOGO YAYASAN.png" alt="MA Nurul Huda">
+          <div>
+            <h3>MA NURUL HUDA</h3>
+            <p>Jenjang sekolah menengah atas di lingkungan pesantren, memadukan kurikulum sistem pendidikan formal dengan pendidikan...</p>
+            <a href="#">Selengkapnya</a>
+          </div>
         </div>
-      </div>
 
-      <div class="education-card">
-        <img src=" LOGO YAYASAN.png" alt="SDI Nurul Huda">
-        <div>
-          <h3>SDI NURUL HUDA</h3>
-          <p>Sekolah dasar islam terpadu yang memadukan pembelajaran dalam nilai-nilai keislaman, melatih siswa menjadi cerdas...</p>
-          <a href="#">Selengkapnya</a>
+        <div class="education-card">
+          <img src=" LOGO YAYASAN.png" alt="SDI Nurul Huda">
+          <div>
+            <h3>SDI NURUL HUDA</h3>
+            <p>Sekolah dasar islam terpadu yang memadukan pembelajaran dalam nilai-nilai keislaman, melatih siswa menjadi cerdas...</p>
+            <a href="#">Selengkapnya</a>
+          </div>
         </div>
-      </div>
 
-      <div class="education-card">
-        <img src=" SMK Insan Nasional.png" alt="SMK Insan Nasional">
-        <div>
-          <h3>SMK INSAN NASIONAL</h3>
-          <p>Vokasi di lingkungan pesantren yang berbasis pada nilai keikhlasan, disiplin, bacaan kitab klasik, tahfidz, serta kehidupan...</p>
-          <a href="#">Selengkapnya</a>
+        <div class="education-card">
+          <img src=" SMK Insan Nasional.png" alt="SMK Insan Nasional">
+          <div>
+            <h3>SMK INSAN NASIONAL</h3>
+            <p>Vokasi di lingkungan pesantren yang berbasis pada nilai keikhlasan, disiplin, bacaan kitab klasik, tahfidz, serta kehidupan...</p>
+            <a href="#">Selengkapnya</a>
+          </div>
         </div>
-      </div>
 
-      <div class="education-card">
-        <img src=" LOGO YAYASAN.png" alt="Ponpes Nurul Huda">
-        <div>
-          <h3>PONPES NURUL HUDA</h3>
-          <p>Asrama dan pembinaan santri yang berfokus pada nilai keikhlasan, disiplin, bacaan kitab klasik, tahfidz, serta kehidupan...</p>
-          <a href="#">Selengkapnya</a>
+        <div class="education-card">
+          <img src=" LOGO YAYASAN.png" alt="Ponpes Nurul Huda">
+          <div>
+            <h3>PONPES NURUL HUDA</h3>
+            <p>Asrama dan pembinaan santri yang berfokus pada nilai keikhlasan, disiplin, bacaan kitab klasik, tahfidz, serta kehidupan...</p>
+            <a href="#">Selengkapnya</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- ========== BERITA & KEGIATAN ========== -->
   <section id="program">
@@ -1529,22 +1581,6 @@ nav a {
   </footer>
 
   <script>
-    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-
-dropdownToggles.forEach(toggle => {
-  toggle.addEventListener('touchstart', function(e) {
-    e.preventDefault();
-    this.click();
-  });
-});
-
-    const menuIcon = document.querySelector('.menu-icon');
-const nav = document.querySelector('nav');
-
-menuIcon.addEventListener('click', () => {
-  nav.classList.toggle('active');
-});
-
     // Logo upload
     const logoContainer = document.getElementById('logo-container');
     const logoInput = document.getElementById('logo-input');
@@ -1567,9 +1603,34 @@ menuIcon.addEventListener('click', () => {
     const savedLogo = localStorage.getItem('schoolLogo');
     if(savedLogo){ logoPreview.src = savedLogo; }
 
+    // ============ MOBILE MENU TOGGLE ============
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+
+    menuToggle.addEventListener('click', function() {
+      mainNav.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
+        mainNav.classList.remove('active');
+        menuToggle.classList.remove('active');
+      }
+    });
+
+    // Close menu when clicking a link (except dropdown toggle)
+    const navLinks = mainNav.querySelectorAll('a:not(.dropdown-toggle)');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        mainNav.classList.remove('active');
+        menuToggle.classList.remove('active');
+      });
+    });
+
     // Loading Screen Handler
     const loadingOverlay = document.getElementById('loadingOverlay');
-    const navLinks = document.querySelectorAll('nav a');
 
     function showLoading() {
       if (loadingOverlay) {
@@ -1619,9 +1680,11 @@ menuIcon.addEventListener('click', () => {
         item.addEventListener('click', function(e) {
           const href = this.getAttribute('href');
           
-          // Close dropdown
+          // Close dropdown and mobile menu
           pendidikanDropdown.classList.remove('active');
           pendidikanMenu.classList.remove('active');
+          mainNav.classList.remove('active');
+          menuToggle.classList.remove('active');
           
           // If it's a link to another page, show loading and navigate
           if (href && (href.includes('.html') || href.startsWith('http'))) {
@@ -1644,8 +1707,9 @@ menuIcon.addEventListener('click', () => {
       });
     }
 
-    // Handle navigation links
-    navLinks.forEach(link => {
+    // Handle all navigation links
+    const allNavLinks = document.querySelectorAll('nav a');
+    allNavLinks.forEach(link => {
       link.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
         
@@ -1677,20 +1741,21 @@ menuIcon.addEventListener('click', () => {
       });
     });
 
-    // Handle "Selengkapnya" link
-    const readMoreLink = document.querySelector('.read-more');
-    if (readMoreLink) {
-      readMoreLink.addEventListener('click', function(e) {
-        e.preventDefault();
+    // Handle "Selengkapnya" links
+    const readMoreLinks = document.querySelectorAll('.read-more');
+    readMoreLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
-        // Set flag for next page
-        sessionStorage.setItem('showLoading', 'true');
-        showLoading();
-        setTimeout(() => {
-          window.location.href = href;
-        }, 500);
+        if (href && href !== '#' && (href.includes('.html') || href.startsWith('http'))) {
+          e.preventDefault();
+          sessionStorage.setItem('showLoading', 'true');
+          showLoading();
+          setTimeout(() => {
+            window.location.href = href;
+          }, 500);
+        }
       });
-    }
+    });
 
     // Hide loading when page is fully loaded
     window.addEventListener('load', function() {
