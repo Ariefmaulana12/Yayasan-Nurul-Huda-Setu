@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sejarah - Yayasan Nurul HUDA SETU</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #e8f6ee 0%, #e3f3ea 40%, #e9f6ef 100%);
+            min-height: 100vh;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: #2d8e2d;
+            color: white;
+            padding: 8px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: white;
+            text-decoration: none;
+            width: 30px;
+            height: 30px;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .school-info h1 {
+            font-size: 16px;
+            color: #2d8e2d;
+            font-weight: bold;
+        }
+
+        .school-info p {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #2d8e2d;
+        }
+
+        .menu-icon {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .menu-icon span {
+            width: 5px;
+            height: 5px;
+            background-color: #333;
+            border-radius: 50%;
+            margin: 2px;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            text-decoration: none;
+            color: #333;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dropdown-toggle:hover {
+            color: #2d8e2d;
+        }
+
+        .dropdown-toggle::after {
+            content: '▼';
+            font-size: 8px;
+            margin-left: 3px;
+            transition: transform 0.3s;
+        }
+
+        .dropdown-toggle.active::after {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            min-width: 220px;
+            max-width: 280px;
+            box-shadow: 0 4px 12px rgba(0,0,0,.15);
+            border-radius: 6px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            margin-top: 8px;
+            padding: 8px 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            color: #333;
+            font-size: 13px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            white-space: nowrap;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f0f7f0;
+            color: #2d8e2d;
+        }
+
+        .dropdown-menu a:first-child {
+            border-radius: 6px 6px 0 0;
+        }
+
+        .dropdown-menu a:last-child {
+            border-radius: 0 0 6px 6px;
+        }
+
+        /* Konten Sejarah */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .sejarah-detail {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            margin-top: 20px;
+        }
+
+        .sejarah-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .sejarah-header h1 {
+            color: #2d8e2d;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .sejarah-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .sejarah-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .sejarah-content {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            text-align: justify;
+        }
+
+        .sejarah-content p {
+            margin-bottom: 20px;
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2d8e2d;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #236f23;
+        }
+
+        @media (max-width: 768px) {
+            .sejarah-detail {
+                padding: 20px;
+            }
+
+            .sejarah-header h1 {
+                font-size: 1.5em;
+            }
+
+            .sejarah-content {
+                font-size: 15px;
+            }
+        }
+
+        /* ============ LOADING SCREEN ============ */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2d8e2d 0%, #1e6b1e 100%);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+
+        .loading-logo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            animation: pulse 2s ease-in-out infinite;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+        }
+
+        .loading-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 20px;
+        }
+
+        .loading-text {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            animation: fadeInOut 2s ease-in-out infinite;
+        }
+
+        .loading-subtext {
+            font-size: 16px;
+            opacity: 0.9;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            margin: 30px auto 0;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.9;
+            }
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .loading-logo {
+                width: 150px;
+                height: 150px;
+            }
+            .loading-text {
+                font-size: 20px;
+            }
+            .loading-subtext {
+                font-size: 14px;
+            }
+        }
+
+        /* Footer */
+        footer{
+            background:linear-gradient(to right, #81c784 0%, #66bb6a 50%, #4caf50 100%);
+            padding:40px 50px;
+            color:#fff;
+            margin-top:60px;
+        }
+        .footer-container{
+            max-width:1200px;
+            margin:0 auto;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:40px;
+            flex-wrap:wrap;
+        }
+        .footer-logo-section{
+            display:flex;
+            align-items:center;
+            gap:20px;
+        }
+        .footer-logo{
+            width:80px;
+            height:80px;
+            background:#fff;
+            border-radius:8px;
+            padding:8px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            border:2px solid rgba(0,0,0,.1);
+            flex-shrink:0;
+        }
+        .footer-logo img{
+            width:100%;
+            height:100%;
+            object-fit:contain;
+        }
+        .footer-info{
+            flex:1;
+            min-width:250px;
+        }
+        .footer-info h3{
+            font-size:18px;
+            font-weight:700;
+            margin-bottom:10px;
+            color:#fff;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .footer-info p{
+            font-size:14px;
+            line-height:1.6;
+            color:#fff;
+            margin:5px 0;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .footer-contact{
+            text-align:right;
+            min-width:200px;
+        }
+        .footer-contact-item{
+            display:flex;
+            align-items:center;
+            justify-content:flex-end;
+            gap:10px;
+            margin-bottom:12px;
+            font-size:14px;
+            color:#fff;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .footer-contact-item .icon{
+            width:20px;
+            height:20px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            flex-shrink:0;
+        }
+        .footer-contact-item span{
+            color:#fff;
+        }
+        @media (max-width:992px){
+            footer{padding:30px 30px}
+            .footer-container{flex-direction:column;text-align:center;gap:30px}
+            .footer-logo-section{justify-content:center}
+            .footer-info{text-align:center}
+            .footer-contact{text-align:center}
+            .footer-contact-item{justify-content:center}
+        }
+        @media (max-width:576px){
+            footer{padding:25px 20px}
+            .footer-logo{width:60px;height:60px}
+            .footer-info h3{font-size:16px}
+            .footer-info p{font-size:13px}
+            .footer-contact-item{font-size:13px}
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <img src="gambar/LOGO YAYASAN.png" alt="Logo Yayasan">
+            </div>
+            <div class="loading-text">YAYASAN NURUL HUDA SETU</div>
+            <div class="loading-subtext">Memuat halaman...</div>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="contact-info"><span>📞</span><span>087804664422</span></div>
+        <div class="social-icons">
+            <a href="#" title="YouTube">▶</a>
+            <a href="#" title="Facebook">f</a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-section">
+            <div class="logo">
+                <img src="gambar/LOGO YAYASAN.png" alt="Logo Yayasan">
+            </div>
+            <div class="school-info">
+                <h1>YAYASAN NURUL HUDA SETU</h1>
+                <p>Khidmah - Istiqamah - Barakah</p>
+            </div>
+        </div>
+        <nav>
+            <a href="index.html">BERANDA</a>
+            <div class="dropdown">
+              <a href="#" class="dropdown-toggle" id="pendidikanDropdown">PENDIDIKAN</a>
+              <div class="dropdown-menu" id="pendidikanMenu">
+                <a href="ra-bunga-bangsa.html">RA BUNGA BANGSA</a>
+                <a href="index.html#jenjang-pendidikan">MTs NURUL HUDA</a>
+                <a href="index.html#jenjang-pendidikan">MI NURUL HUDA</a>
+                <a href="index.html#jenjang-pendidikan">MA NURUL HUDA</a>
+                <a href="index.html#jenjang-pendidikan">SDI NURUL HUDA</a>
+                <a href="index.html#jenjang-pendidikan">SMK INSAN NASIONAL</a>
+                <a href="index.html#jenjang-pendidikan">PONPES NURUL HUDA</a>
+              </div>
+            </div>
+            <a href="index.html#profil">PROFIL SEKOLAH</a>
+            <a href="index.html#fasilitas">FASILITAS</a>
+            <div class="menu-icon"><span></span><span></span><span></span></div>
+          </nav>
+    </header>
+
+    <div class="container">
+        <div class="sejarah-detail">
+            <div class="sejarah-header">
+                <h1>Sejarah Yayasan Nurul Huda Setu</h1>
+            </div>
+
+            <div class="sejarah-image">
+                <img src="gambar/gerbang.png" alt="Gedung Yayasan">
+            </div>
+
+            <div class="sejarah-content">
+                <p> Yayasan Nurul Huda Setu yang terletak di Jalan Setu Kojengkang, Kampung Sawah, Desa Cikargamen, Kec. Setu, Kab. Bekasi ini sebelumnya bernama Yayasan Pendidikan Islam "Nurul Huda", setelah adanya perubahan dan penyesuaian dengan peraturan pemerintah berubah menjadi Yayasan Nurul Huda Setu sesuai dengan Akta Pendirian Nomor : 01, tanggal 02 Maret 2015. Yayasan ini memiliki lahan tanah wakaf lebih dari 21.000 m² yang meliputi tanah darat dan tanah sawah yang semuanya terletak di Kampung Sawah, Desa Cikargamen, Kec. Setu, Kab. Bekasi yang peruntukannya untuk sarana pendidikan. Yayasan Nurul Huda Setu didirikan pertama kali oleh beberapa tokoh masyarakat dan tokoh agama yang antara lain KH. Anwaruddin (almarhum) dan KH. Dawam Sartoni. Saat itu, Yayasan Nurul Huda Setu tercatat di Notaris Dr. HM. Ridhwan Indra R.A, SH dengan nama Yayasan Pendidikan Islam Nurul Huda No 61 Tanggal 31 Maret 1999. SDI Nurul Huda terletak dijalan Setu Kojengkang yang merupakan jalan alternatif utama penghubung Bekasi – Bogor, berada di lingkungan padat penduduk dan perumahan-perumahan besar (Harvest City, Metland Cilengsi), dengan keberagaman status sosial dan ekonomi, maka SDI Nurul Huda mulai dijangkau dari berbagai arah dan dapat menyelenggarakan pendidikan berkualitas dan unggul. </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo-section">
+                <div class="footer-logo">
+                    <img src="gambar/LOGO YAYASAN.png" alt="Logo Yayasan">
+                </div>
+                <div class="footer-info">
+                    <h3>YAYASAN NURUL HUDA SETU</h3>
+                    <p>Jalan Raya Cikarang-Cibarusah, Kampung Sawah, Desa</p>
+                    <p>Cibarusahjaya, Kec. Setu, Kab. Bekasi</p>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <div class="footer-contact-item">
+                    <span class="icon">📞</span>
+                    <span>021-82619 8633</span>
+                </div>
+                <div class="footer-contact-item">
+                    <span class="icon">🕐</span>
+                    <span>021-82619 8633</span>
+                </div>
+                <div class="footer-contact-item">
+                    <span>021-82619 8633</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Loading Screen Handler
+        const loadingOverlay = document.getElementById('loadingOverlay');
+
+        function showLoading() {
+            if (loadingOverlay) {
+                loadingOverlay.classList.add('active');
+            }
+        }
+
+        function hideLoading() {
+            if (loadingOverlay) {
+                loadingOverlay.classList.remove('active');
+            }
+        }
+
+        // Check if we should show loading on page load (from navigation)
+        window.addEventListener('DOMContentLoaded', function() {
+            if (sessionStorage.getItem('showLoading') === 'true') {
+                showLoading();
+                sessionStorage.removeItem('showLoading');
+            }
+        });
+
+        // Dropdown Menu Handler
+        const pendidikanDropdown = document.getElementById('pendidikanDropdown');
+        const pendidikanMenu = document.getElementById('pendidikanMenu');
+        const dropdownContainer = pendidikanDropdown ? pendidikanDropdown.closest('.dropdown') : null;
+        
+        if (pendidikanDropdown && pendidikanMenu && dropdownContainer) {
+            // Toggle dropdown on click
+            pendidikanDropdown.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                pendidikanDropdown.classList.toggle('active');
+                pendidikanMenu.classList.toggle('active');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (dropdownContainer && !dropdownContainer.contains(e.target)) {
+                    pendidikanDropdown.classList.remove('active');
+                    pendidikanMenu.classList.remove('active');
+                }
+            });
+            
+            // Handle dropdown menu item clicks
+            const dropdownItems = pendidikanMenu.querySelectorAll('a');
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    // Close dropdown
+                    pendidikanDropdown.classList.remove('active');
+                    pendidikanMenu.classList.remove('active');
+                    
+                    // If it's a link to another page, show loading
+                    if (href && (href.includes('.html') || href.startsWith('http'))) {
+                        e.preventDefault();
+                        sessionStorage.setItem('showLoading', 'true');
+                        showLoading();
+                        setTimeout(() => {
+                            window.location.href = href;
+                        }, 500);
+                    } else if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        // For anchor links on same page
+                        const targetId = href.substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                        } else if (href.includes('index.html')) {
+                            // If link to index.html with anchor
+                            sessionStorage.setItem('showLoading', 'true');
+                            showLoading();
+                            setTimeout(() => {
+                                window.location.href = href;
+                            }, 500);
+                        }
+                    }
+                });
+            });
+        }
+
+        // Handle navigation links
+        const navLinks = document.querySelectorAll('nav a:not(.dropdown-toggle)');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                // Skip dropdown toggle link (handled separately)
+                if (this.id === 'pendidikanDropdown') {
+                    return;
+                }
+                
+                // Only show loading for external page links (not anchor links on same page)
+                if (href && (href.includes('.html') || href.startsWith('http'))) {
+                    e.preventDefault();
+                    // Set flag for next page
+                    sessionStorage.setItem('showLoading', 'true');
+                    showLoading();
+                    
+                    // Navigate after a short delay to show loading animation
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 500);
+                } else if (href && href.startsWith('#')) {
+                    // For anchor links, smooth scroll
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Hide loading when page is fully loaded
+        window.addEventListener('load', function() {
+            setTimeout(hideLoading, 500);
+        });
+
+        // Also hide loading if page loads quickly
+        if (document.readyState === 'complete') {
+            setTimeout(hideLoading, 500);
+        }
+    </script>
+</body>
+</html>

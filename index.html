@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yayasan Nurul HUDA SETU</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x:hidden;
+    }
+
+    /* Top Bar - Enhanced */
+    .top-bar{
+      background-color:#2d8e2d;color:#fff;padding:10px 50px;
+      display:flex;justify-content:space-between;align-items:center;font-size:14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .contact-info{display:flex;align-items:center;gap:8px;animation: slideInLeft 0.6s ease-out;}
+    .contact-info span:first-child{
+      font-size: 16px;
+      animation: pulse 2s infinite;
+    }
+    .social-icons{display:flex;gap:15px;animation: slideInRight 0.6s ease-out;}
+    .social-icons a{
+      color:#fff;text-decoration:none;width:32px;height:32px;
+      background-color:rgba(255,255,255,.2);border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    .social-icons a:hover{
+      background-color:rgba(255,255,255,.35);
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Header - Enhanced */
+    header{
+      background:#fff;padding:18px 50px;display:flex;justify-content:space-between;align-items:center;
+      box-shadow:0 4px 12px rgba(0,0,0,.08);
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.98);
+      animation: slideDown 0.5s ease-out;
+    }
+    .logo-section{display:flex;align-items:center;gap:18px;animation: fadeIn 0.8s ease-out;}
+    .logo{
+      width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+      overflow:hidden;background:#fff;padding:6px;border:3px solid #1e6b1e;
+      box-shadow: 0 4px 15px rgba(30,107,30,0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .logo:hover{
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: 0 6px 20px rgba(30,107,30,0.3);
+    }
+    .logo img{width:100%;height:100%;object-fit:contain;transition: transform 0.3s ease;}
+    .logo:hover img{transform: scale(1.1);}
+    .logo-upload{display:none}
+    .school-info h1{
+      font-size:18px;color:#1e6b1e;font-weight:700;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      letter-spacing: 0.5px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+    }
+    .school-info p{
+      font-size:13px;color:#2d8e2d;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-style: italic;
+      opacity: 0.9;
+    }
+
+    /* Navigation - Enhanced */
+    nav{display:flex;gap:30px;align-items:center;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif}
+    nav a{
+      text-decoration:none;color:#1e6b1e;font-size:14px;font-weight:600;
+      transition:all .3s ease;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 8px 12px;
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+    nav a::before{
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: #2d8e2d;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+    nav a:hover{
+      color:#2d8e2d;
+      background: rgba(45,142,45,0.05);
+    }
+    nav a:hover::before{
+      width: 80%;
+    }
+    .search-icon{
+      width:36px;height:36px;display:flex;align-items:center;justify-content:center;
+      cursor:pointer;color:#1e6b1e;font-size:18px;transition:all .3s ease;
+      border-radius: 50%;
+      background: rgba(45,142,45,0.05);
+    }
+    .search-icon:hover{
+      color:#2d8e2d;
+      transform: scale(1.15) rotate(15deg);
+      background: rgba(45,142,45,0.1);
+      box-shadow: 0 4px 12px rgba(45,142,45,0.2);
+    }
+    .menu-icon{
+      width:36px;height:36px;display:flex;flex-direction:column;justify-content:center;
+      align-items:center;cursor:pointer;gap:5px;padding: 8px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    .menu-icon:hover{
+      background: rgba(45,142,45,0.08);
+    }
+    .menu-icon span{
+      width:26px;height:3px;background:#1e6b1e;border-radius:3px;
+      transition:all .3s ease;
+    }
+    .menu-icon:hover span{
+      background: #2d8e2d;
+    }
+
+    /* Dropdown Menu - Enhanced */
+    .dropdown{position:relative;display:inline-block}
+    .dropdown-toggle{
+      text-decoration:none;color:#1e6b1e;font-size:14px;font-weight:600;
+      transition:all .3s ease;cursor:pointer;display:flex;align-items:center;gap:6px;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 8px 12px;
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+    .dropdown-toggle::before{
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: #2d8e2d;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+    .dropdown-toggle:hover{
+      color:#2d8e2d;
+      background: rgba(45,142,45,0.05);
+    }
+    .dropdown-toggle:hover::before{
+      width: 80%;
+    }
+    .dropdown-toggle::after{
+      content:'▼';font-size:9px;margin-left:4px;transition:transform .3s ease;color:#1e6b1e;
+    }
+    .dropdown-toggle.active::after{transform:rotate(180deg);color:#2d8e2d}
+    .dropdown-menu{
+      position:absolute;top:100%;left:0;background:#fff;min-width:240px;max-width:300px;
+      box-shadow:0 8px 24px rgba(0,0,0,.12);border-radius:10px;opacity:0;visibility:hidden;
+      transform:translateY(-15px) scale(0.95);transition:all .3s ease;z-index:1000;
+      margin-top:12px;padding:10px 0;max-height:420px;overflow-y:auto;
+      border: 1px solid rgba(45,142,45,0.1);
+    }
+    .dropdown-menu::-webkit-scrollbar{width: 6px;}
+    .dropdown-menu::-webkit-scrollbar-track{background: #f1f1f1;border-radius: 10px;}
+    .dropdown-menu::-webkit-scrollbar-thumb{background: #2d8e2d;border-radius: 10px;}
+    .dropdown-menu.active{
+      opacity:1;visibility:visible;transform:translateY(0) scale(1);
+    }
+    .dropdown-menu a{
+      display:block;padding:12px 24px;color:#333;font-size:13px;text-decoration:none;
+      transition:all .3s ease;white-space:nowrap;position: relative;
+      overflow: hidden;
+    }
+    .dropdown-menu a::before{
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 3px;
+      height: 100%;
+      background: #2d8e2d;
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+    .dropdown-menu a:hover{
+      background: linear-gradient(90deg, rgba(45,142,45,0.08) 0%, rgba(45,142,45,0.02) 100%);
+      color:#2d8e2d;
+      padding-left: 28px;
+    }
+    .dropdown-menu a:hover::before{
+      transform: scaleY(1);
+    }
+    .dropdown-menu a:first-child{border-radius:10px 10px 0 0}
+    .dropdown-menu a:last-child{border-radius:0 0 10px 10px}
+
+    /* HERO – Enhanced with modern gradients */
+    .hero{
+      position:relative;
+      height:calc(100vh - 120px); min-height:700px;
+      display:flex;align-items:center;
+      overflow:hidden;
+      background-image:
+        linear-gradient(135deg,
+          #217021 0%,
+          #2d8e2d 25%,
+          #4d6d4e 50%,
+          #778577 75%,
+          #e3ece3 100%);
+      background-size: cover;
+      background-position: center;
+      background-repeat:no-repeat;
+    }
+
+    /* Animated gradient overlay */
+    .hero::after{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(45,142,45,0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(30,107,30,0.15) 0%, transparent 50%);
+      z-index: 2;
+      animation: gradientShift 8s ease-in-out infinite;
+    }
+
+    .hero::before{
+      content:'';
+      position:absolute;
+      top:0;left:0;right:0;bottom:0;
+      background-image:url('gambar/BG2.JPG');
+      background-size:cover;
+      background-position:center;
+      opacity:.15;
+      z-index:1;
+    }
+
+    .hero-content{
+      position:relative; z-index:5;
+      max-width:650px; color:#fff;
+      margin-left:60px;
+      text-shadow:3px 3px 15px rgba(0,0,0,.4);
+      font-family:'Times New Roman', Times, serif;
+      animation: fadeInUp 1s ease-out;
+    }
+    .hero-content h2{
+      font-size:2.4em; line-height:1.5; font-weight:700;
+      margin-bottom:20px;
+      font-family:'Times New Roman', Times, serif;
+      animation: slideInLeft 0.8s ease-out 0.2s both;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-images{
+      position:absolute; right:5%; bottom:0; z-index:10;
+      width:50%; max-width:800px; min-width:500px; pointer-events:none;
+      animation: fadeInRight 1s ease-out 0.4s both;
+    }
+    .student-group{width:100%; display:flex; justify-content:flex-end; align-items:flex-end}
+    .student-group-img{
+      width:100%; height:auto; object-fit:contain;
+      filter:drop-shadow(8px 12px 25px rgba(0,0,0,.45));
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* Animations */
+    @keyframes slideDown{
+      from{transform: translateY(-100%); opacity: 0;}
+      to{transform: translateY(0); opacity: 1;}
+    }
+    @keyframes slideInLeft{
+      from{transform: translateX(-50px); opacity: 0;}
+      to{transform: translateX(0); opacity: 1;}
+    }
+    @keyframes slideInRight{
+      from{transform: translateX(50px); opacity: 0;}
+      to{transform: translateX(0); opacity: 1;}
+    }
+    @keyframes fadeIn{
+      from{opacity: 0;}
+      to{opacity: 1;}
+    }
+    @keyframes fadeInUp{
+      from{transform: translateY(30px); opacity: 0;}
+      to{transform: translateY(0); opacity: 1;}
+    }
+    @keyframes fadeInRight{
+      from{transform: translateX(50px); opacity: 0;}
+      to{transform: translateX(0); opacity: 1;}
+    }
+    @keyframes pulse{
+      0%, 100%{transform: scale(1);}
+      50%{transform: scale(1.1);}
+    }
+    @keyframes float{
+      0%, 100%{transform: translateY(0px);}
+      50%{transform: translateY(-20px);}
+    }
+    @keyframes gradientShift{
+      0%, 100%{opacity: 0.8;}
+      50%{opacity: 1;}
+    }
+
+    /* Responsive */
+    @media (max-width:1400px){
+      .hero-images{width:48%; min-width:450px; right:3%}
+      .hero-content h2{font-size:2.1em}
+    }
+    @media (max-width:1200px){
+      .hero-content h2{font-size:1.9em}
+      .hero-images{width:45%; min-width:400px; right:2%}
+      .hero-content{margin-left:40px}
+    }
+    @media (max-width:992px){
+      header{padding:12px 30px}
+      nav{gap:20px}
+      .hero{
+        min-height:600px;
+        flex-direction:column;
+        justify-content:center;
+        background-image:
+          linear-gradient(to bottom,
+            #1e6b1e 0%,
+            #2d8e2d 20%,
+            #4caf50 40%,
+            #81c784 60%,
+            #c8e6c9 100%);
+      }
+      .hero-content{
+        margin:0 auto; text-align:center; padding:30px 20px; max-width:90%;
+        position:relative; z-index:5;
+      }
+      .hero-content h2{font-size:1.8em; margin-bottom:30px}
+      .hero-images{
+        position:relative; width:85%; max-width:500px; right:auto; margin:20px auto 0;
+        z-index:5;
+      }
+      .school-info h1{font-size:15px}
+      nav a{font-size:13px}
+    }
+    @media (max-width:576px){
+      header{padding:10px 20px}
+      .logo{width:60px;height:60px}
+      .school-info h1{font-size:13px}
+      .school-info p{font-size:11px}
+      nav{gap:15px}
+      nav a{font-size:12px}
+      .hero-content h2{font-size:1.5em}
+      .hero-images{width:95%; min-width:300px}
+      .search-icon{width:28px;height:28px;font-size:16px}
+      .menu-icon{width:28px;height:28px}
+    }
+
+    :root{
+      --brand:#2d8e2d;
+      --ink:#243039;
+      --muted:#6c7a80;
+      --paper:#ffffff;
+    }
+
+    body{
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color:var(--ink);
+      background:
+        linear-gradient(180deg, #e8f6ee 0%, #e3f3ea 40%, #e9f6ef 100%);
+    }
+
+    .top-accent{
+      height:6px;
+      background: linear-gradient(90deg,#1e88e5 0%, #4aa9ff 100%);
+      width:100%;
+    }
+
+    .container{width:min(1100px,92%);margin:0 auto}
+
+    .section{position:relative;padding:60px 0;animation: fadeIn 1s ease-out;}
+    .section + .section{padding-top:40px}
+
+    .eyebrow{
+      font-size:13px;
+      letter-spacing:.15em;
+      font-weight:700;
+      color:#1c5a2a;
+      text-transform:uppercase;
+      margin-bottom:24px;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 12px;
+    }
+    .eyebrow::after{
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #2d8e2d 0%, transparent 100%);
+      border-radius: 3px;
+    }
+
+    /* ============ SEJARAH - Enhanced ============ */
+    .sejarah{
+      background:
+        radial-gradient(800px 250px at 20% 35%, rgba(45,142,45,.10), transparent 60%);
+    }
+
+    .read-more {
+      display: inline-block;
+      padding: 10px 24px;
+      background: linear-gradient(135deg, #2d8e2d 0%, #1e6b1e 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+      box-shadow: 0 4px 12px rgba(45,142,45,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .read-more::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .read-more:hover {
+      background: linear-gradient(135deg, #236f23 0%, #1a5a1a 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(45,142,45,0.4);
+    }
+
+    .read-more:hover::before{
+      left: 100%;
+    }
+
+    .sejarah-grid{
+      display:grid;
+      grid-template-columns: 460px 1fr;
+      gap:64px;
+      align-items:start;
+    }
+
+    .photo-stack{
+      position:relative;
+      padding-top:20px;
+      min-height:320px;
+    }
+    .photo{
+      position:absolute;
+      border-radius:16px;
+      overflow:hidden;
+      background:var(--paper);
+      box-shadow:
+        0 12px 28px rgba(0,0,0,.10),
+        0 4px 8px rgba(0,0,0,.08);
+      border:2px solid rgba(45,142,45,0.1);
+      transition: all 0.3s ease;
+    }
+    .photo:hover{
+      transform: scale(1.02);
+      box-shadow:
+        0 16px 36px rgba(0,0,0,.12),
+        0 6px 12px rgba(0,0,0,.10);
+    }
+    .photo img{display:block;width:100%;height:auto;transition: transform 0.3s ease;}
+    .photo:hover img{transform: scale(1.05);}
+
+    .photo.main{
+      width:100%;
+      left:0;
+      top:70px;
+    }
+    .photo.float{
+      width:64%;
+      left:170px;
+      top:0;
+      box-shadow:
+        0 16px 32px rgba(0,0,0,.12),
+        0 6px 12px rgba(0,0,0,.10);
+    }
+
+    .sejarah-text{
+      padding:20px 0;
+    }
+
+    .sejarah p{
+      font-size:15.5px;
+      line-height:1.9;
+      color:var(--ink);
+      text-align:justify;
+      text-indent:24px;
+      hyphens:auto;
+      margin-bottom:1em;
+      opacity: 0.95;
+    }
+
+    .divider{
+      height:2px;
+      margin:48px 0 12px;
+      background:linear-gradient(90deg, rgba(45,142,45,.2), rgba(0,0,0,0));
+      opacity:.4;
+      border-radius: 2px;
+    }
+
+    /* ============ FASILITAS - Enhanced ============ */
+    .facilities .eyebrow{margin-top:12px}
+
+    .facilities-slider {
+      position: relative;
+      width: 100%;
+      height: 450px;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 16px 40px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.08);
+      border: 3px solid rgba(45,142,45,0.1);
+    }
+
+    .slider-container {
+      display: flex;
+      width: 400%;
+      height: 100%;
+      animation: slideShow 16s ease-in-out infinite;
+    }
+
+    .facility-card {
+      position: relative;
+      width: 25%;
+      height: 100%;
+      overflow: hidden;
+      background: #dfeeed;
+      isolation: isolate;
+      transition: all 0.5s ease;
+    }
+
+    .facility-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .facility-card:hover img{
+      transform: scale(1.05);
+    }
+
+    .facility-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(60% 80% at 15% 20%, rgba(0,0,0,.28), transparent 65%),
+        linear-gradient(180deg, rgba(0,0,0,.22) 0%, rgba(0,0,0,.28) 100%);
+      mix-blend-mode: multiply;
+      opacity: .5;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .facility-card:hover::after{
+      opacity: .35;
+    }
+
+    .facility-title {
+      position: absolute;
+      left: 28px;
+      top: 24px;
+      z-index: 2;
+      color: #fff;
+      font-weight: 700;
+      font-size: 38px;
+      letter-spacing: .03em;
+      text-shadow: 0 3px 8px rgba(0,0,0,.3);
+      transition: all 0.3s ease;
+    }
+
+    .facility-card:hover .facility-title{
+      transform: translateY(-5px);
+      text-shadow: 0 5px 15px rgba(0,0,0,.4);
+    }
+
+    @keyframes slideShow {
+      0%, 23% {
+        transform: translateX(0);
+      }
+      27%, 48% {
+        transform: translateX(-25%);
+      }
+      52%, 73% {
+        transform: translateX(-50%);
+      }
+      77%, 100% {
+        transform: translateX(-75%);
+      }
+    }
+
+    /* Responsif */
+    @media (max-width:992px){
+      .sejarah-grid{grid-template-columns:1fr;gap:40px;}
+      .photo.main{position:relative;top:0;left:0;width:88%;margin-top:32px}
+      .photo.float{left:auto;right:4%;top:-26px;width:60%}
+      .sejarah-text{padding-top:20px}
+      .sejarah p{font-size:15px}
+      .facility-card img{height:380px}
+      .facilities-slider{height:400px;}
+    }
+    @media (max-width:560px){
+      .photo.main{width:94%}
+      .photo.float{width:68%}
+      .facility-title{font-size:30px;left:20px;}
+      .facility-card img{height:320px}
+      .facilities-slider{height:340px;}
+    }
+
+    /* ============ LOADING SCREEN - Enhanced ============ */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #2d8e2d 0%, #1e6b1e 100%);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+    }
+
+    .loading-overlay::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 30% 40%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.08) 0%, transparent 50%);
+      animation: gradientShift 8s ease-in-out infinite;
+    }
+
+    .loading-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .loading-content {
+      text-align: center;
+      color: white;
+      position: relative;
+      z-index: 2;
+    }
+
+    .loading-logo {
+      width: 220px;
+      height: 220px;
+      margin: 0 auto 40px;
+      animation: pulse 2.5s ease-in-out infinite;
+      filter: drop-shadow(0 12px 35px rgba(0,0,0,0.35));
+      position: relative;
+    }
+
+    .loading-logo::before{
+      content: '';
+      position: absolute;
+      inset: -10px;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    .loading-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 24px;
+    }
+
+    .loading-text {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-shadow: 3px 3px 10px rgba(0,0,0,0.35);
+      animation: fadeInOut 2.5s ease-in-out infinite;
+      letter-spacing: 1px;
+    }
+
+    .loading-subtext {
+      font-size: 17px;
+      opacity: 0.95;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+      font-weight: 500;
+    }
+
+    .loading-spinner {
+      width: 56px;
+      height: 56px;
+      margin: 36px auto 0;
+      border: 5px solid rgba(255,255,255,0.25);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .loading-logo {
+        width: 170px;
+        height: 170px;
+      }
+      .loading-text {
+        font-size: 22px;
+      }
+      .loading-subtext {
+        font-size: 15px;
+      }
+    }
+
+    /* ============ JENJANG PENDIDIKAN - Enhanced ============ */
+    .section-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #2d8e2d;
+      margin-bottom: 32px;
+      text-align: center;
+      position: relative;
+      padding-bottom: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    .section-title::after{
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #2d8e2d 0%, #1e6b1e 100%);
+      border-radius: 4px;
+    }
+
+    .education-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 20px 0;
+  }
+
+  .education-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f9fffe 100%);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .education-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 16px;
+  }
+
+  .education-card h3 {
+    font-size: 18px;
+    color: #2d8e2d;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .education-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 18px;
+  }
+
+  .education-card a {
+    text-decoration: none;
+    color: #2d8e2d;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.3s ease;
+  }
+
+  .education-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  .education-card:hover a {
+    color: #1e6b1e;
+  }
+
+ /* Responsiveness */
+@media (max-width: 1200px) {
+  .education-grid {
+    grid-template-columns: repeat(3, 1fr);  /* Menjadi 3 card di atas untuk layar lebih kecil */
+  }
+}
+
+@media (max-width: 768px) {
+  .education-grid {
+    grid-template-columns: repeat(2, 1fr);  /* 2 card di atas */
+  }
+}
+
+@media (max-width: 576px) {
+  .education-grid {
+    grid-template-columns: 1fr;  /* 1 card dalam satu kolom */
+  }
+}
+
+    /* ============ BERITA KEGIATAN - Enhanced ============ */
+    .search-container {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 32px;
+    }
+
+    .search-container input {
+      padding: 14px 20px;
+      width: 100%;
+      max-width: 100%;
+      border-radius: 12px;
+      border: 2px solid rgba(45,142,45,0.2);
+      font-size: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .search-container input:focus{
+      outline: none;
+      border-color: #2d8e2d;
+      box-shadow: 0 6px 16px rgba(45,142,45,0.15);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .card {
+      background: linear-gradient(135deg, #ffffff 0%, #f9fffe 100%);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      border: 2px solid rgba(45,142,45,0.08);
+      position: relative;
+    }
+
+    .card::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #2d8e2d 0%, #1e6b1e 100%);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover::before{
+      transform: scaleX(1);
+    }
+
+    .card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 12px 32px rgba(45,142,45,0.18);
+      border-color: rgba(45,142,45,0.2);
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      max-height: 220px;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover img{
+      transform: scale(1.08);
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card-content h4 {
+      font-size: 19px;
+      color: #2d8e2d;
+      margin-bottom: 12px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .card-content p {
+      font-size: 14.5px;
+      color: #666;
+      margin-bottom: 18px;
+      line-height: 1.7;
+      opacity: 0.9;
+    }
+
+    .card-content .read-more {
+      text-decoration: none;
+      color: #2d8e2d;
+      font-weight: 600;
+      font-size: 14px;
+      border-top: 2px solid rgba(45,142,45,0.15);
+      padding-top: 14px;
+      display: inline-block;
+      transition: all 0.3s ease;
+      position: relative;
+      margin: 0;
+      box-shadow: none;
+      background: none;
+      border-radius: 0;
+    }
+
+    .card-content .read-more::after{
+      content: '→';
+      margin-left: 6px;
+      transition: margin-left 0.3s ease;
+    }
+
+    .card-content .read-more:hover{
+      color: #1e6b1e;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .card-content .read-more:hover::after{
+      margin-left: 12px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .search-container input{
+        max-width: 100%;
+      }
+    }
+
+    /* ============ FOOTER - Enhanced ============ */
+    footer{
+      background:linear-gradient(135deg, #81c784 0%, #66bb6a 50%, #4caf50 100%);
+      padding:50px 50px 40px;
+      color:#fff;
+      margin-top:80px;
+      box-shadow: 0 -8px 24px rgba(0,0,0,0.08);
+      position: relative;
+    }
+
+    footer::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #2d8e2d 0%, #66bb6a 50%, #4caf50 100%);
+    }
+
+    .footer-container{
+      max-width:1200px;
+      margin:0 auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:50px;
+      flex-wrap:wrap;
+    }
+    .footer-logo-section{
+      display:flex;
+      align-items:center;
+      gap:24px;
+      animation: fadeIn 0.8s ease-out;
+    }
+    .footer-logo{
+      width:90px;
+      height:90px;
+      background:#fff;
+      border-radius: 12px;
+      padding:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:3px solid rgba(255,255,255,0.3);
+      flex-shrink:0;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+    }
+    .footer-logo:hover{
+      transform: scale(1.05) rotate(-5deg);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    .footer-logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+    .footer-info{
+      flex:1;
+      min-width:280px;
+    }
+    .footer-info h3{
+      font-size:20px;
+      font-weight:700;
+      margin-bottom:14px;
+      color:#fff;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      letter-spacing: 0.5px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+    }
+    .footer-info p{
+      font-size:14.5px;
+      line-height:1.7;
+      color:#fff;
+      margin:6px 0;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      opacity: 0.95;
+    }
+    .footer-contact{
+      text-align:right;
+      min-width:220px;
+    }
+    .footer-contact-item{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:12px;
+      margin-bottom:14px;
+      font-size:14.5px;
+      color:#fff;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: all 0.3s ease;
+      opacity: 0.95;
+    }
+    .footer-contact-item:hover{
+      opacity: 1;
+      transform: translateX(-4px);
+    }
+    .footer-contact-item .icon{
+      width:24px;
+      height:24px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      padding: 4px;
+    }
+    .footer-contact-item span{
+      color:#fff;
+    }
+    
+    @media (max-width:992px){
+      footer{padding:40px 30px 30px}
+      .footer-container{flex-direction:column;text-align:center;gap:40px}
+      .footer-logo-section{justify-content:center}
+      .footer-info{text-align:center}
+      .footer-contact{text-align:center}
+      .footer-contact-item{justify-content:center}
+      .footer-contact-item:hover{transform: translateX(0) translateY(-2px);}
+    }
+    @media (max-width:576px){
+      footer{padding:35px 20px 25px}
+      .footer-logo{width:70px;height:70px}
+      .footer-info h3{font-size:17px}
+      .footer-info p{font-size:13.5px}
+      .footer-contact-item{font-size:13.5px}
+    }
+    /* ============ General Mobile Adjustments ============ */
+.hero-content h2 {
+  font-size: 2.4em;
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+@media (max-width: 992px) {
+  .hero-content h2 {
+    font-size: 1.9em; /* Slightly smaller font size on tablets */
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-content h2 {
+    font-size: 1.5em; /* Adjust for very small screens like mobile phones */
+  }
+  .hero-images {
+    width: 95%;
+    min-width: 300px;
+  }
+}
+
+.top-bar {
+  padding: 10px 30px;  /* Adjust padding for smaller screens */
+}
+
+@media (max-width: 576px) {
+  .top-bar {
+    padding: 10px 20px; /* Reduce padding for mobile devices */
+  }
+}
+
+/* Adjust Navbar Links on Mobile */
+nav a {
+  font-size: 12px; /* Reduce font size on smaller screens */
+  padding: 8px 12px;
+}
+
+@media (max-width: 576px) {
+  nav {
+    gap: 15px;
+  }
+  nav a {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+    
+  </style>
+</head>
+<body>
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-content">
+      <div class="loading-logo">
+        <img src="gambar/LOGO YAYASAN.png" alt="Logo Yayasan">
+      </div>
+      <div class="loading-text">YAYASAN NURUL HUDA SETU</div>
+      <div class="loading-subtext">Memuat halaman...</div>
+      <div class="loading-spinner"></div>
+    </div>
+  </div>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="contact-info"><span>📞</span><span>087804664422</span></div>
+    <div class="social-icons">
+      <a href="#" title="YouTube">▶</a>
+      <a href="#" title="Facebook">f</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="logo-section">
+      <div class="logo" id="logo-container">
+        <img id="logo-preview" src="gambar/LOGO YAYASAN.png" alt="Logo Yayasan">
+      </div>
+      <input type="file" id="logo-input" class="logo-upload" accept="image/*" onChange="handleLogoUpload(event)">
+      <div class="school-info">
+        <h1>YAYASAN NURUL HUDA SETU</h1>
+        <p>Khidmah - Istiqamah - Barakah</p>
+      </div>
+    </div>
+    <nav>
+      <a href="#beranda">BERANDA</a>
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle" id="pendidikanDropdown">PENDIDIKAN</a>
+        <div class="dropdown-menu" id="pendidikanMenu">
+          <a href="ra-bunga-bangsa.html">RA BUNGA BANGSA</a>
+          <a href="#jenjang-pendidikan">MTs NURUL HUDA</a>
+          <a href="#jenjang-pendidikan">MI NURUL HUDA</a>
+          <a href="#jenjang-pendidikan">MA NURUL HUDA</a>
+          <a href="#jenjang-pendidikan">SDI NURUL HUDA</a>
+          <a href="#jenjang-pendidikan">SMK INSAN NASIONAL</a>
+          <a href="#jenjang-pendidikan">PONPES NURUL HUDA</a>
+        </div>
+      </div>
+      <a href="#profil">PROFIL SEKOLAH</a>
+      <a href="#fasilitas">FASILITAS</a>
+      <a href="#program">PROGRAM</a>
+      <div class="search-icon" title="Pencarian">🔍</div>
+      <div class="menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Menyiapkan Generasi Masa<br>Depan yang Berilmu, Berakhlak,<br>dan Siap Menghadapi<br>Tantangan.</h2>
+    </div>
+
+    <div class="hero-images">
+      <div class="student-group">
+        <img src="gambar/BG1.png" alt="Siswa Yayasan" class="student-group-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SEJARAH ========== -->
+  <section class="section sejarah">
+    <div class="container">
+      <div class="eyebrow">Sejarah Yayasan Nurul Huda Setu</div>
+
+      <div class="sejarah-grid">
+        <!-- kiri: tumpukan foto -->
+        <div class="photo-stack">
+          <!-- foto besar bawah -->
+          <figure class="photo main">
+            <img src="gambar/gerbang.png" alt="Gedung Yayasan"/>
+          </figure>
+        </div>
+
+        <!-- kanan: paragraf -->
+        <div class="sejarah-text">
+          <p>
+            Yayasan Nurul Huda Setu yang terletak di Jalan Setu Kojengkang, Kampung Sawah, Desa Cikargamen, Kec. Setu, Kab. Bekasi ini sebelumnya bernama Yayasan Pendidikan Islam "Nurul Huda", setelah adanya perubahan dan penyesuaian dengan peraturan pemerintah berubah menjadi Yayasan Nurul Huda Setu sesuai dengan Akta Pendirian Nomor : 01, tanggal 02 Maret 2015. Yayasan ini memiliki lahan tanah wakaf lebih dari 21.000 m² yang meliputi tanah darat dan tanah sawah yang semuanya terletak di Kampung Sawah, Desa Cikargamen, Kec. Setu, Kab. Bekasi yang peruntukannya untuk sarana pendidikan. Yayasan Nurul Huda Setu didirikan pertama kali oleh beberapa tokoh masyarakat dan tokoh agama yang antara lain KH. 
+          </p>
+          <a href="sejarah.html" class="read-more">Selengkapnya →</a>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+    </div>
+  </section>
+
+  <!-- ========== FASILITAS ========== -->
+  <section class="section facilities">
+    <div class="container">
+      <div class="eyebrow">Fasilitas Pesantren</div>
+
+      <div class="facilities-slider">
+        <div class="slider-container">
+          <div class="facility-card">
+            <img src="gambar/lab komputer.JPG" alt="Lab Komputer"/>
+            <div class="facility-title">Lab Komputer</div>
+          </div>
+          <div class="facility-card">
+            <img src="gambar/Musola.JPG" alt="Musola"/>
+            <div class="facility-title">Musola</div>
+          </div>
+          <div class="facility-card">
+            <img src="gambar/kamar mandi.JPG" alt="Kamar Mandi"/>
+            <div class="facility-title">Kamar Mandi</div>
+          </div>
+          <div class="facility-card">
+            <img src="gambar/Lapangan Upacara.JPG" alt="Lapangan Serbaguna"/>
+            <div class="facility-title">Lapangan Serbaguna</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== JENJANG PENDIDIKAN ========== -->
+<section id="jenjang-pendidikan">
+  <div class="container">
+    <div class="section-title">JENJANG PENDIDIKAN</div>
+
+    <div class="education-grid">
+      <div class="education-card">
+        <img src="gambar/LOGO RA.png" alt="RA Bunga Bangsa">
+        <div>
+          <h3>RA BUNGA BANGSA</h3>
+          <p>Setara TK/PAUD, dikenalkan dengan pembiasaan adab Islami, pengajaran Al-Qur'an & Hadits, serta kegiatan bermain-belajar.</p>
+          <a href="#">Selengkapnya</a>
+        </div>
+      </div>
+
+      <div class="education-card">
+        <img src="gambar/LOGO YAYASAN.png" alt="MTs Nurul Huda">
+        <div>
+          <h3>MTs NURUL HUDA</h3>
+          <p>Jenjang sekolah menengah pertama berbasis madrasah/pesantren, memperkuat pondasi keilmuan dan keagamaan sambil...</p>
+          <a href="#">Selengkapnya</a>
+        </div>
+      </div>
+
+      <div class="education-card">
+        <img src="gambar/LOGO YAYASAN.png" alt="MI Nurul Huda">
+        <div>
+          <h3>MI NURUL HUDA</h3>
+          <p>Sekolah dasar berbasis madrasah yang mengintegrasikan kurikulum nasional dengan pendidikan ilmu agama...</p>
+          <a href="#">Selengkapnya</a>
+        </div>
+      </div>
+
+      <div class="education-card">
+        <img src="gambar/LOGO YAYASAN.png" alt="MA Nurul Huda">
+        <div>
+          <h3>MA NURUL HUDA</h3>
+          <p>Jenjang sekolah menengah atas di lingkungan pesantren, memadukan kurikulum sistem pendidikan formal dengan pendidikan...</p>
+          <a href="#">Selengkapnya</a>
+        </div>
+      </div>
+
+      <div class="education-card">
+        <img src="gambar/LOGO YAYASAN.png" alt="SDI Nurul Huda">
+        <div>
+          <h3>SDI NURUL HUDA</h3>
+          <p>Sekolah dasar islam terpadu yang memadukan pembelajaran dalam nilai-nilai keislaman, melatih siswa menjadi cerdas...</p>
+          <a href="#">Selengkapnya</a>
+        </div>
+      </div>
+
+      <div class="education-card">
+        <img src="gambar/SMK Insan Nasional.png" alt="SMK Insan Nasional">
+        <div>
+          <h3>SMK INSAN NASIONAL</h3>
+          <p>Vokasi di lingkungan pesantren yang berbasis pada nilai keikhlasan, disiplin, bacaan kitab klasik, tahfidz, serta kehidupan...</p>
+          <a href="#">Selengkapnya</a>
+        </div>
+      </div>
+
+      <div class="education-card">
+        <img src="gambar/LOGO YAYASAN.png" alt="Ponpes Nurul Huda">
+        <div>
+          <h3>PONPES NURUL HUDA</h3>
+          <p>Asrama dan pembinaan santri yang berfokus pada nilai keikhlasan, disiplin, bacaan kitab klasik, tahfidz, serta kehidupan...</p>
+          <a href="#">Selengkapnya</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- ========== BERITA & KEGIATAN ========== -->
+  <section id="program">
+    <div class="container">
+      <!-- Title Section -->
+      <div class="section-title">Kegiatan Pesantren, Berita & Artikel</div>
+        
+      <!-- Search Section -->
+      <div class="search-container">
+        <input type="text" placeholder="Cari Kegiatan, Berita atau Artikel...">
+      </div>
+    
+      <!-- Card Grid -->
+      <div class="card-grid">
+        <!-- Card 1 -->
+        <div class="card">
+          <img src="gambar/Merdeka Belajar.jpg" alt="MERDEKA BELAJAR ">
+          <div class="card-content">
+            <h4>MERDEKA BELAJAR</h4>
+            <p>Deskripsi singkat tentang kegiatan di sekolah Yayasan Nurul Huda Setu, yang berlangsung dalam acara penting...</p>
+            <a href="#" class="read-more">Selengkapnya</a>
+          </div>
+        </div>
+    
+        <!-- Card 2 -->
+        <div class="card">
+          <img src="gambar/SPMB-MI.jpg" alt="SPMB-MI NURUL HUDA SETU">
+          <div class="card-content">
+            <h4>SPMB-MI NURUL HUDA SETU</h4>
+            <p>Deskripsi singkat tentang kegiatan di sekolah Yayasan Nurul Huda Setu, yang berlangsung dalam acara penting...</p>
+            <a href="#" class="read-more">Selengkapnya</a>
+          </div>
+        </div>
+    
+        <!-- Card 3 -->
+        <div class="card">
+          <img src="gambar/SPMB RA Bunga Bangsa.jpg" alt="SPMB RA BUNGA BANGSA ">
+          <div class="card-content">
+            <h4>SPMB RA BUNGA BANGSA</h4>
+            <p>Deskripsi singkat tentang kegiatan di sekolah Yayasan Nurul Huda Setu, yang berlangsung dalam acara penting...</p>
+            <a href="#" class="read-more">Selengkapnya</a>
+          </div>
+        </div>
+    
+        <!-- Card 4 -->
+        <div class="card">
+          <img src="gambar/SPMB-SMK INSAN NASIONAL.jpg" alt="SPMB-SMK INSAN NASIONAL">
+          <div class="card-content">
+            <h4>SPMB-SMK INSAN NASIONAL</h4>
+            <p>Deskripsi singkat tentang kegiatan di sekolah Yayasan Nurul Huda Setu, yang berlangsung dalam acara penting...</p>
+            <a href="#" class="read-more">Selengkapnya</a>
+          </div>
+        </div>
+    
+        <!-- Card 5 -->
+        <div class="card">
+          <img src="gambar/SPMB-MA .jpg" alt="SPMB-MA NURUL HUDA SETU">
+          <div class="card-content">
+            <h4>SPMB-MA NURUL HUDA SETU</h4>
+            <p>Deskripsi singkat tentang kegiatan di sekolah Yayasan Nurul Huda Setu, yang berlangsung dalam acara penting...</p>
+            <a href="#" class="read-more">Selengkapnya</a>
+          </div>
+        </div>
+    
+        <!-- Card 6 -->
+        <div class="card">
+          <img src="gambar/MTS SPMB.jpg" alt="MTS SPMB NURUL HUDA SETU">
+          <div class="card-content">
+            <h4>PROGRAM UNGGULAN</h4>
+            <p>Deskripsi singkat tentang kegiatan di sekolah Yayasan Nurul Huda Setu, yang berlangsung dalam acara penting...</p>
+            <a href="#" class="read-more">Selengkapnya</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-logo-section">
+        <div class="footer-logo">
+          <img src="gambar/LOGO YAYASAN.png" alt="Logo Yayasan">
+        </div>
+        <div class="footer-info">
+          <h3>YAYASAN NURUL HUDA SETU</h3>
+          <p>Jalan Raya Cikarang-Cibarusah, Kampung Sawah, Desa</p>
+          <p>Cibarusahjaya, Kec. Setu, Kab. Bekasi</p>
+        </div>
+      </div>
+      <div class="footer-contact">
+        <div class="footer-contact-item">
+          <span class="icon">📞</span>
+          <span>021-82619 8633</span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="icon">🕐</span>
+          <span>021-82619 8633</span>
+        </div>
+        <div class="footer-contact-item">
+          <span>021-82619 8633</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Logo upload
+    const logoContainer = document.getElementById('logo-container');
+    const logoInput = document.getElementById('logo-input');
+    const logoPreview = document.getElementById('logo-preview');
+
+    logoContainer.addEventListener('click', ()=>logoInput.click());
+
+    function handleLogoUpload(e){
+      const file = e.target.files[0];
+      if(file && file.type.startsWith('image/')){
+        const reader = new FileReader();
+        reader.onload = (ev)=>{
+          logoPreview.src = ev.target.result;
+          localStorage.setItem('schoolLogo', ev.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    const savedLogo = localStorage.getItem('schoolLogo');
+    if(savedLogo){ logoPreview.src = savedLogo; }
+
+    // Loading Screen Handler
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const navLinks = document.querySelectorAll('nav a');
+
+    function showLoading() {
+      if (loadingOverlay) {
+        loadingOverlay.classList.add('active');
+      }
+    }
+
+    function hideLoading() {
+      if (loadingOverlay) {
+        loadingOverlay.classList.remove('active');
+      }
+    }
+
+    // Check if we should show loading on page load (from navigation)
+    window.addEventListener('DOMContentLoaded', function() {
+      if (sessionStorage.getItem('showLoading') === 'true') {
+        showLoading();
+        sessionStorage.removeItem('showLoading');
+      }
+    });
+
+    // Dropdown Menu Handler
+    const pendidikanDropdown = document.getElementById('pendidikanDropdown');
+    const pendidikanMenu = document.getElementById('pendidikanMenu');
+    const dropdownContainer = pendidikanDropdown ? pendidikanDropdown.closest('.dropdown') : null;
+    
+    if (pendidikanDropdown && pendidikanMenu && dropdownContainer) {
+      // Toggle dropdown on click
+      pendidikanDropdown.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        pendidikanDropdown.classList.toggle('active');
+        pendidikanMenu.classList.toggle('active');
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(e) {
+        if (dropdownContainer && !dropdownContainer.contains(e.target)) {
+          pendidikanDropdown.classList.remove('active');
+          pendidikanMenu.classList.remove('active');
+        }
+      });
+      
+      // Handle dropdown menu item clicks
+      const dropdownItems = pendidikanMenu.querySelectorAll('a');
+      dropdownItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          
+          // Close dropdown
+          pendidikanDropdown.classList.remove('active');
+          pendidikanMenu.classList.remove('active');
+          
+          // If it's a link to another page, show loading and navigate
+          if (href && (href.includes('.html') || href.startsWith('http'))) {
+            e.preventDefault();
+            sessionStorage.setItem('showLoading', 'true');
+            showLoading();
+            setTimeout(() => {
+              window.location.href = href;
+            }, 500);
+          } else if (href && href.startsWith('#')) {
+            // For anchor links on same page, scroll to section
+            e.preventDefault();
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+              targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        });
+      });
+    }
+
+    // Handle navigation links
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        
+        // Skip dropdown toggle link (handled separately)
+        if (this.id === 'pendidikanDropdown') {
+          return;
+        }
+        
+        // Only show loading for external page links (not anchor links on same page)
+        if (href && (href.includes('.html') || href.startsWith('http'))) {
+          e.preventDefault();
+          // Set flag for next page
+          sessionStorage.setItem('showLoading', 'true');
+          showLoading();
+          
+          // Navigate after a short delay to show loading animation
+          setTimeout(() => {
+            window.location.href = href;
+          }, 500);
+        } else if (href && href.startsWith('#')) {
+          // For anchor links, smooth scroll
+          e.preventDefault();
+          const targetId = href.substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    });
+
+    // Handle "Selengkapnya" link
+    const readMoreLink = document.querySelector('.read-more');
+    if (readMoreLink) {
+      readMoreLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        const href = this.getAttribute('href');
+        // Set flag for next page
+        sessionStorage.setItem('showLoading', 'true');
+        showLoading();
+        setTimeout(() => {
+          window.location.href = href;
+        }, 500);
+      });
+    }
+
+    // Hide loading when page is fully loaded
+    window.addEventListener('load', function() {
+      setTimeout(hideLoading, 500);
+    });
+
+    // Also hide loading if page loads quickly
+    if (document.readyState === 'complete') {
+      setTimeout(hideLoading, 500);
+    }
+
+    // Smooth scroll for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && href.length > 1) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }
+      });
+    });
+
+    // Add scroll animation for sections
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.section').forEach(section => {
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(30px)';
+      section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
