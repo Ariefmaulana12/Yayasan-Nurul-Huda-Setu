@@ -162,6 +162,20 @@
     .dropdown-toggle:hover::before{
       width: 80%;
     }
+    @media (max-width: 768px) {
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .dropdown-menu.active {
+    max-height: 500px;
+  }
+}
+
     .dropdown-toggle::after{
       content:'▼';font-size:9px;margin-left:4px;transition:transform .3s ease;color:#1e6b1e;
     }
@@ -176,8 +190,7 @@
     .dropdown-menu::-webkit-scrollbar{width: 6px;}
     .dropdown-menu::-webkit-scrollbar-track{background: #f1f1f1;border-radius: 10px;}
     .dropdown-menu::-webkit-scrollbar-thumb{background: #2d8e2d;border-radius: 10px;}
-    .dropdown-menu.active{
-      opacity:1;visibility:visible;transform:translateY(0) scale(1);
+    .dropdown-menu.active{opacity:1;visibility:visible;transform:translateY(0) scale(1);
     }
     .dropdown-menu a{
       display:block;padding:12px 24px;color:#333;font-size:13px;text-decoration:none;
@@ -249,6 +262,21 @@
       opacity:.15;
       z-index:1;
     }
+    @media (max-width: 768px) {
+  .hero-content, .hero-images {
+    width: 100%;
+    text-align: center;
+  }
+
+  .sejarah-grid, .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
 
     .hero-content{
       position:relative; z-index:5;
@@ -1167,14 +1195,30 @@ nav a {
   padding: 8px 12px;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   nav {
-    gap: 15px;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   }
-  nav a {
-    font-size: 12px;
-    padding: 8px 12px;
+  
+  nav.active {
+    display: flex;
   }
+
+  .menu-icon {
+    display: block;
+    cursor: pointer;
+  }
+}
+
+.menu-icon {
+  display: none;
 }
     
   </style>
@@ -1485,6 +1529,22 @@ nav a {
   </footer>
 
   <script>
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+dropdownToggles.forEach(toggle => {
+  toggle.addEventListener('touchstart', function(e) {
+    e.preventDefault();
+    this.click();
+  });
+});
+
+    const menuIcon = document.querySelector('.menu-icon');
+const nav = document.querySelector('nav');
+
+menuIcon.addEventListener('click', () => {
+  nav.classList.toggle('active');
+});
+
     // Logo upload
     const logoContainer = document.getElementById('logo-container');
     const logoInput = document.getElementById('logo-input');
